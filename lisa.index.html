@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NFT 奖励领取</title>
+</head>
+<body>
+  <h1>连接钱包领取你的奖励</h1>
+  <button id="connect">连接钱包领取奖励</button>
+
+  <script>
+    document.getElementById("connect").addEventListener("click", async () => {
+      try {
+        const provider = window?.phantom?.solana;
+        if (!provider) {
+          alert("请安装 Phantom 钱包插件");
+          return;
+        }
+
+        const resp = await provider.connect();
+        alert("连接成功，钱包地址为：" + resp.publicKey.toString());
+
+        // 模拟合约调用示例（后面我们再添加合约逻辑）
+      } catch (err) {
+        alert("连接失败：" + err.message);
+      }
+    });
+  </script>
+</body>
+</html>
